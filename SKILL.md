@@ -3,9 +3,16 @@ name: aeo
 description: "AEO/GEO optimization advisor - audit websites for AI engine visibility, create optimization plans, and advise on content strategy for ChatGPT/Gemini/Perplexity citations. Use when user says 'aeo', 'geo', 'קידום אתרים', 'AI visibility', 'להופיע בצ׳אט גיפיטי', 'אופטימיזציה למנועי AI', or needs help getting cited by AI engines."
 ---
 
-# AEO - יועץ אופטימיזציה למנועי AI
+# AEO - יועץ אופטימיזציה למנועי AI / AI Engine Optimization Advisor
 
 Interactive AEO/GEO advisor with 3 modes: audit a website, create an optimization plan, and advise on content strategy.
+
+## Language Detection
+
+**Detect language from user input and respond entirely in that language.**
+- User writes in Hebrew → all output in Hebrew
+- User writes in English → all output in English
+- Mixed → follow the dominant language
 
 ## Key Definitions
 
@@ -25,16 +32,34 @@ Interactive AEO/GEO advisor with 3 modes: audit a website, create an optimizatio
 ## Mode Detection
 
 If no explicit mode, detect from context:
+
+**Hebrew triggers:**
 - "תבדוק את האתר" / URL provided / "מה המצב של" → **audit**
 - "תכין תוכנית" / "מה צריך לעשות" / "רוצה להופיע ב-ChatGPT" → **plan**
 - "מה לכתוב" / "אסטרטגיית תוכן" / "שאלות ותשובות" / "Schema" → **content**
-- Unclear → ask:
-  ```
-  מה אתה צריך?
-  1) ביקורת - לבדוק כמה אתר מוכן ל-AEO
-  2) תוכנית - ליצור מפת דרכים לאופטימיזציה
-  3) תוכן - אסטרטגיית תוכן ושאלות-תשובות מותאמות ל-AI
-  ```
+
+**English triggers:**
+- "check the site" / URL provided / "how is my site doing" → **audit**
+- "create a plan" / "what should I do" / "appear in ChatGPT" → **plan**
+- "what to write" / "content strategy" / "FAQ" / "Schema" → **content**
+
+**Unclear → ask (in detected language):**
+
+Hebrew:
+```
+מה אתה צריך?
+1) ביקורת - לבדוק כמה אתר מוכן ל-AEO
+2) תוכנית - ליצור מפת דרכים לאופטימיזציה
+3) תוכן - אסטרטגיית תוכן ושאלות-תשובות מותאמות ל-AI
+```
+
+English:
+```
+What do you need?
+1) Audit — check how ready a website is for AEO
+2) Plan — build an optimization roadmap
+3) Content — AI-optimized content strategy and Q&A
+```
 
 ---
 
@@ -58,6 +83,7 @@ Use Playwright or web fetch to scan the site. Check these parameters:
 - [ ] Clean URL structure
 - [ ] Sitemap.xml exists
 - [ ] Robots.txt allows AI crawlers
+- [ ] **llms.txt** — fetch `https://[domain]/llms.txt`. Check: file exists, valid Markdown structure (H1 + blockquote + H2 sections with link lists). Missing = Quick Win opportunity (worth 2-3 points off Technical score).
 
 **Content AEO Checklist:**
 - [ ] H1 on homepage — clear, includes name + service
@@ -132,7 +158,7 @@ Use Playwright or web fetch to scan the site. Check these parameters:
 
 ### Step 4: Save
 
-Save to: `C:/Users/guyco/Desktop/פרויקט/outputs/aeo/[site]_audit_[YYYY-MM-DD].md`
+Save to: `outputs/aeo/[site]_audit_[YYYY-MM-DD].md`
 
 Create `outputs/aeo/` if it doesn't exist.
 
@@ -180,6 +206,7 @@ Ask ONE AT A TIME:
 - [ ] ניווט ברור: שירותים נגישים מ-Header, Footer ודף הבית
 - [ ] Alt text על כל התמונות
 - [ ] Sitemap.xml + robots.txt תקינים
+- [ ] **llms.txt בשורש האתר** (Quick Win, 10 דקות) — קובץ Markdown ב-`yoursite.com/llms.txt` שנותן ל-Anthropic/OpenAI/Perplexity סקירה תמציתית של האתר. ראה Knowledge Base למבנה
 
 ### שלב 2: תוכן וסכמות (שבוע 2-4)
 **מטרה:** להפוך את האתר ל"מקור תשובות" למנועי AI
@@ -237,7 +264,7 @@ Ask ONE AT A TIME:
 
 ### Step 3: Save
 
-Save to: `C:/Users/guyco/Desktop/פרויקט/outputs/aeo/[business]_plan_[YYYY-MM-DD].md`
+Save to: `outputs/aeo/[business]_plan_[YYYY-MM-DD].md`
 
 ---
 
@@ -336,7 +363,7 @@ Save to: `C:/Users/guyco/Desktop/פרויקט/outputs/aeo/[business]_plan_[YYYY-
 
 ### Step 3: Save
 
-Save to: `C:/Users/guyco/Desktop/פרויקט/outputs/aeo/[niche]_content_[YYYY-MM-DD].md`
+Save to: `outputs/aeo/[niche]_content_[YYYY-MM-DD].md`
 
 ---
 
@@ -380,6 +407,63 @@ Save to: `C:/Users/guyco/Desktop/פרויקט/outputs/aeo/[niche]_content_[YYYY-
 - **Republish trick:** Go to old pages in WordPress → click "Publish" again → signals "new content" to crawlers
 - **B key equivalent for SEO:** Schema markup is the "B key" of AEO — it forces AI to pay attention to YOUR answers
 - **Precise pricing:** Just like in negotiation (₪4,850 not ₪5,000), precise numbers in content signal expertise to AI
+- **llms.txt:** קובץ אחד בשורש האתר, 10 דקות עבודה, מבטיח ש-Anthropic/OpenAI/Perplexity קוראים את הסיכום שאתה כתבת ולא את מה ש-crawler ניחש
+
+### llms.txt - מדריך מהיר
+
+קובץ Markdown ב-`https://yoursite.com/llms.txt` (בשורש האתר, באותה רמה של `robots.txt` ו-`sitemap.xml`). וולונטרי, אבל **Anthropic, OpenAI ו-Perplexity קוראים אותו**.
+
+**ההבדל מ-robots.txt:**
+| מאפיין | robots.txt | llms.txt |
+|--------|------------|----------|
+| קהל | סורקי מנועים (Googlebot) | מודלי שפה (Claude/GPT/Perplexity) |
+| פורמט | הוראות (User-agent, Disallow) | Markdown |
+| מטרה | חסימת סריקה | הקשר וציטוטים נכונים |
+| חובה | מומלץ | וולונטרי |
+
+**מבנה תקני (לפי llmstxt.org):**
+
+````markdown
+# שם העסק/האתר
+
+> תיאור קצר של 1-2 משפטים. מי אתה, מה אתה עושה, למי.
+
+[פסקת רקע ב-Markdown — מטרה, קהל יעד, מה מייחד]
+
+## משאבים עיקריים
+
+- [דף הבית](https://yoursite.com/): תיאור קצר של מה יש שם
+- [שירותים](https://yoursite.com/services): תיאור
+- [בלוג](https://yoursite.com/blog): מאמרים על [נישה]
+- [אודות](https://yoursite.com/about): רקע מקצועי + credentials
+
+## Optional
+
+- [פרטיות](https://yoursite.com/privacy)
+- [תנאי שימוש](https://yoursite.com/terms)
+````
+
+**כללי כתיבה:**
+1. **H1 חובה** — שם העסק/האתר בשורה הראשונה
+2. **Blockquote (>)** — תיאור 1-2 משפטים מיד אחרי ה-H1
+3. **H2 sections** — כל סקציה היא קבוצה לוגית של עמודים
+4. **רשימות עם links** — `[שם](url): תיאור`. תיאור הוא אופציונלי אבל מומלץ
+5. **סקציית Optional** — משאבים שאפשר לדלג עליהם בסיכום קצר. תמיד אחרונה
+
+**איך מטמיעים בוורדפרס:**
+- אופציה 1: העלאת קובץ ידני דרך FTP/cPanel לשורש (public_html/llms.txt)
+- אופציה 2: תוסף "Website LLMs.txt" או דומה
+- אופציה 3 (Yoast/RankMath): חלק מהתוספים מתחילים לתמוך בזה אוטומטית
+
+**איך בודקים שעובד:**
+- פתח דפדפן: `https://yoursite.com/llms.txt`
+- אמור להציג Markdown טקסט (לא 404, לא HTML)
+- בדוק ב-curl: `curl -I https://yoursite.com/llms.txt` → סטטוס 200
+
+**אזהרה — לא לכתוב:**
+- ❌ אל תעתיק את כל ה-sitemap.xml. זה לא רשימת כל העמודים אלא **משאבים מרכזיים**
+- ❌ אל תכניס תוכן מלא. זה אינדקס/sitemap, לא הדף עצמו
+- ❌ אל תוסיף תגיות HTML. זה Markdown טהור
 
 ### Tools
 | Tool | Purpose | Cost |
