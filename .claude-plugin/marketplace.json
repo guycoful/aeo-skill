@@ -1,0 +1,22 @@
+{
+  "name": "aeo-skill",
+  "owner": {
+    "name": "Guy Cohen",
+    "url": "https://github.com/guycoful"
+  },
+  "plugins": [
+    {
+      "name": "aeo",
+      "source": "./",
+      "description": "AEO/GEO advisor: audit websites for visibility in AI engines (ChatGPT, Gemini, Perplexity), build an optimization plan and advise on content strategy for AI citations. Hebrew and English.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Guy Cohen"
+      },
+      "license": "MIT"
+    }
+  ],
+  "metadata": {
+    "description": "Guy Cohen: AEO/GEO advisor for AI engine visibility"
+  }
+}

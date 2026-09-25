@@ -1,0 +1,10 @@
+{
+  "name": "aeo",
+  "version": "1.0.0",
+  "description": "AEO/GEO advisor: audit websites for visibility in AI engines (ChatGPT, Gemini, Perplexity), build an optimization plan and advise on content strategy for AI citations. Hebrew and English.",
+  "author": { "name": "Guy Cohen", "url": "https://github.com/guycoful" },
+  "homepage": "https://github.com/guycoful/aeo-skill",
+  "repository": "https://github.com/guycoful/aeo-skill",
+  "license": "MIT",
+  "keywords": ["aeo","geo","seo","ai-visibility","hebrew","marketing"]
+}
