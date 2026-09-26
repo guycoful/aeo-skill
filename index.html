@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ערכת הנראות במנועי AI · שבע בדיקות · גיא כהן</title>
+<meta name="description" content="שבע בדיקות להדבקה בקלוד שיגלו למה ChatGPT, ג'מיני ופרפלקסיטי לא ממליצים על מה שבניתם.">
+<meta property="og:title" content="ChatGPT לא ממליץ על מה שבניתם? 7 בדיקות שיגלו למה">
+<meta property="og:description" content="מדביקים לקלוד ומקבלים תשובה. לאתר, לאפליקציה, לדף נחיתה או לסטארטאפ.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy-d:#0A1F44;--navy-l:#102B5B;--deep:#050D1E;--p5:#8B5CF6;--p7:#7C3AED;--lav:#C4B5FD;--sky:#8FB0FF;--g3:#D1D5DB;--g4:#9CA3AF}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Heebo',sans-serif;color:#fff;background:radial-gradient(1200px 600px at 85% -10%,rgba(139,92,246,.35),transparent 60%),linear-gradient(180deg,var(--navy-d),var(--deep));min-height:100vh;line-height:1.65}
+.wrap{max-width:860px;margin:0 auto;padding:48px 20px 64px}
+.kicker{display:inline-block;font-weight:700;font-size:14px;letter-spacing:.5px;color:var(--lav);border:1px solid rgba(196,181,253,.4);border-radius:999px;padding:4px 14px}
+h1{font-weight:900;font-size:clamp(34px,6vw,54px);line-height:1.15;margin:18px 0 12px}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--sky),var(--p5));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:19px;color:var(--g3);margin:0 0 28px}
+.site{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px 20px;margin-bottom:34px}
+.site label{display:block;font-weight:700;margin-bottom:8px}
+.site input{width:100%;direction:ltr;text-align:left;font:500 17px 'JetBrains Mono',monospace;color:#fff;background:var(--deep);border:1px solid var(--navy-l);border-radius:10px;padding:12px 14px;outline:none}
+.site input:focus{border-color:var(--p5)}
+.site small{display:block;color:var(--g4);margin-top:8px}
+.how{color:var(--g3);margin:0 0 30px}
+.how b{color:#fff}
+.card{position:relative;background:linear-gradient(180deg,rgba(16,43,91,.55),rgba(10,31,68,.55));border:1px solid rgba(143,176,255,.18);border-radius:20px;padding:26px 24px 22px;margin-bottom:22px}
+.num{position:absolute;top:18px;left:22px;font:800 40px 'Heebo';color:rgba(139,92,246,.35)}
+.card h2{font-size:24px;font-weight:800;margin:0 0 6px;padding-left:60px}
+.card p{color:var(--g3);margin:0 0 16px}
+.term{background:var(--deep);border:1px solid var(--navy-l);border-radius:14px;overflow:hidden}
+.bar{display:flex;align-items:center;gap:7px;padding:9px 12px;background:rgba(255,255,255,.04);border-bottom:1px solid var(--navy-l);direction:ltr}
+.dot{width:11px;height:11px;border-radius:50%}.r{background:#FF5F57}.y{background:#FEBC2E}.g{background:#28C840}
+.fname{font:500 13px 'JetBrains Mono',monospace;color:var(--g4);margin-left:6px}
+.copy{margin-left:auto;font:700 14px 'Heebo';color:#fff;background:var(--p7);border:0;border-radius:8px;padding:6px 14px;cursor:pointer}
+.copy:hover{background:var(--p5)}.copy.done{background:#16a34a}
+pre.prompt{margin:0;padding:16px 18px;white-space:pre-wrap;word-break:break-word;font:16px/1.7 'Heebo',sans-serif;color:#E5E7EB;direction:rtl}
+pre.prompt mark{background:none;color:var(--sky);font-family:'JetBrains Mono',monospace}
+.why{margin-top:34px;padding:22px 24px;border-right:4px solid var(--p5);background:rgba(139,92,246,.08);border-radius:12px}
+.why h3{margin:0 0 8px;font-size:20px}.why p{margin:0;color:var(--g3)}
+.full{margin-top:26px;color:var(--g3)}
+.full a,.foot a{color:var(--sky)}
+.foot{margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);color:var(--g4);font-size:15px}
+.foot b{color:#fff}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="kicker">ערכה · נראות במנועי AI</span>
+  <h1>ChatGPT לא ממליץ<br>על <em>מה שבניתם?</em></h1>
+  <p class="lead">שבע בדיקות שיגלו למה. לאתר, לאפליקציה, לדף נחיתה או לסטארטאפ. מדביקים לקלוד ומקבלים תשובה, בלי לדעת לתכנת.</p>
+
+  <div class="site">
+    <label for="url">הכתובת שאתם בודקים</label>
+    <input id="url" type="text" placeholder="example.co.il" autocomplete="off" spellcheck="false">
+    <small>מקלידים פעם אחת, וכל שבע הבדיקות מתעדכנות עם הכתובת שלכם.</small>
+  </div>
+
+  <p class="how"><b>איך משתמשים:</b> פותחים צ'אט חדש ב־<a href="https://claude.ai" style="color:var(--sky)">claude.ai</a>, מעתיקים את הבדיקות אחת אחרי השנייה לפי הסדר, וקוראים כל תשובה לפני שממשיכים. השביעית מסכמת הכל לתוכנית תיקונים. הבדיקות נכתבו לקלוד. בכלים אחרים זה תלוי ביכולת שלהם לגלוש ולמשוך את הקוד של האתר, והתוצאות עלולות להיות חלקיות.</p>
+
+<section class="card">
+  <div class="num">01</div>
+  <h2>מה המנוע באמת רואה</h2>
+  <p>הרבה אתרים, אפליקציות ודפי נחיתה שנבנים היום עם כלי AI נראים מעולה בדפדפן, אבל הטקסט נטען רק אחרי שהדף רץ. גוגל מחכה. רוב זחלני ה-AI לא. לפעמים המנוע רואה כמעט כלום.</p>
+  <div class="term">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">prompt.txt</span><button class="copy" type="button">העתקה</button></div>
+    <pre class="prompt" data-tpl="תמשוך את ה-HTML הגולמי של example.co.il בלי להריץ JavaScript, תסיר תגיות, ותגיד לי כמה תווים של טקסט נראה יש שם ומה 200 התווים הראשונים.">תמשוך את ה-HTML הגולמי של example.co.il בלי להריץ JavaScript, תסיר תגיות, ותגיד לי כמה תווים של טקסט נראה יש שם ומה 200 התווים הראשונים.</pre>
+  </div>
+</section>
+<section class="card">
+  <div class="num">02</div>
+  <h2>לכל עמוד שם ותיאור, בדיוק אחד</h2>
+  <p>כשכמה עמודים נקראים אותו דבר, המנוע לא יודע איזה מהם לצטט.</p>
+  <div class="term">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">prompt.txt</span><button class="copy" type="button">העתקה</button></div>
+    <pre class="prompt" data-tpl="תבדוק בכל עמוד באתר example.co.il אם יש title, meta description ו-H1 אחד בדיוק, ותגיד לי אילו מהם חוזרים על עצמם בין עמודים.">תבדוק בכל עמוד באתר example.co.il אם יש title, meta description ו-H1 אחד בדיוק, ותגיד לי אילו מהם חוזרים על עצמם בין עמודים.</pre>
+  </div>
+</section>
+<section class="card">
+  <div class="num">03</div>
+  <h2>אולי הדלת פשוט נעולה</h2>
+  <p>קובץ קטן אחד באתר קובע לאילו רובוטים מותר להיכנס. לפעמים ChatGPT חסום בו, ואף אחד לא יודע.</p>
+  <div class="term">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">prompt.txt</span><button class="copy" type="button">העתקה</button></div>
+    <pre class="prompt" data-tpl="תבדוק אם robots.txt ו-sitemap.xml של example.co.il מחזירים 200, אם המפה מוצהרת בתוך robots, ואילו זחלני AI מותרים שם.">תבדוק אם robots.txt ו-sitemap.xml של example.co.il מחזירים 200, אם המפה מוצהרת בתוך robots, ואילו זחלני AI מותרים שם.</pre>
+  </div>
+</section>
+<section class="card">
+  <div class="num">04</div>
+  <h2>המנוע צריך להבין מה בניתם</h2>
+  <p>נתונים מובנים אומרים למנוע במפורש מה זה, למי זה ומה זה עושה. בלעדיהם הוא מנחש.</p>
+  <div class="term">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">prompt.txt</span><button class="copy" type="button">העתקה</button></div>
+    <pre class="prompt" data-tpl="תבדוק אם יש באתר example.co.il בלוק JSON-LD, איזה סוג הוא, ומה חסר בו לפי schema.org לסוג האתר שלי (עסק, מוצר, אפליקציה או ארגון).">תבדוק אם יש באתר example.co.il בלוק JSON-LD, איזה סוג הוא, ומה חסר בו לפי schema.org לסוג האתר שלי (עסק, מוצר, אפליקציה או ארגון).</pre>
+  </div>
+</section>
+<section class="card">
+  <div class="num">05</div>
+  <h2>עמודים שאף אחד לא מגיע אליהם</h2>
+  <p>עמוד שאין אליו קישור מאף מקום באתר כמעט לא נמצא. גם לא על ידי המנועים.</p>
+  <div class="term">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">prompt.txt</span><button class="copy" type="button">העתקה</button></div>
+    <pre class="prompt" data-tpl="תוציא את כל הקישורים הפנימיים מדף הבית של example.co.il, תשווה אותם לעמודים שבמפת האתר, ותגיד לי אילו עמודים לא מקושרים מאף מקום.">תוציא את כל הקישורים הפנימיים מדף הבית של example.co.il, תשווה אותם לעמודים שבמפת האתר, ותגיד לי אילו עמודים לא מקושרים מאף מקום.</pre>
+  </div>
+</section>
+<section class="card">
+  <div class="num">06</div>
+  <h2>אתר כבד הוא אתר שמחכים לו</h2>
+  <p>לפעמים תמונה אחת לא דחוסה מעכבת את כל הדף. הבדיקה מוצאת אותה בשם.</p>
+  <div class="term">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">prompt.txt</span><button class="copy" type="button">העתקה</button></div>
+    <pre class="prompt" data-tpl="תמדוד כמה זמן לוקח לטעון את example.co.il וכמה הוא שוקל, ותגיד לי מה הקובץ הכבד ביותר בדף.">תמדוד כמה זמן לוקח לטעון את example.co.il וכמה הוא שוקל, ותגיד לי מה הקובץ הכבד ביותר בדף.</pre>
+  </div>
+</section>
+<section class="card">
+  <div class="num">07</div>
+  <h2>ועכשיו, מה מתקנים קודם</h2>
+  <p>שש בדיקות בלי סדר עדיפויות הן רק רשימה. האחרונה הופכת אותן לתוכנית של שלושה צעדים.</p>
+  <div class="term">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">prompt.txt</span><button class="copy" type="button">העתקה</button></div>
+    <pre class="prompt" data-tpl="על סמך כל הבדיקות, תן לי שלושה תיקונים לפי סדר השפעה, ולכל אחד את השינוי המדויק בקוד.">על סמך כל הבדיקות, תן לי שלושה תיקונים לפי סדר השפעה, ולכל אחד את השינוי המדויק בקוד.</pre>
+  </div>
+</section>
+  <div class="why">
+    <h3>למה הראשונה ראשונה</h3>
+    <p>אתר שנבנה ב־React או ב־Vue מגיש לפעמים שלד ריק, והטקסט מוזרק בדפדפן. גוגל מריץ JavaScript ולכן בסוף רואה אותו, בדחייה. הזחלנים של ChatGPT, פרפלקסיטי וקלוד לרוב לא מריצים אותו בכלל. אתר שנכשל בבדיקה הזו לא נראה למנועי התשובות, בלי קשר לכל השאר.</p>
+  </div>
+
+  <p class="full">עובדים עם Claude Code? לא צריך להדביק כלום. כל השבע כבר בנויות בתוך הסקיל aeo, קוד פתוח: <a href="https://github.com/guycoful/aeo-skill">github.com/guycoful/aeo-skill</a></p>
+
+  <footer class="foot">נבנה על ידי <b>גיא כהן</b> · GuyCohenAI. מצאתם את זה שימושי? שמרו את הדף ושלחו אותו למי שבונה עכשיו אתר, אפליקציה או דף נחיתה.</footer>
+</main>
+<script>
+const inp=document.getElementById('url');
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function clean(v){return v.trim().replace(/^https?:\/\//i,'').replace(/\/+$/,'')}
+function render(){
+  const v=clean(inp.value)||'example.co.il';
+  document.querySelectorAll('pre.prompt').forEach(p=>{
+    const t=p.dataset.tpl.split('example.co.il').join(v);
+    p.dataset.text=t;
+    p.innerHTML=esc(p.dataset.tpl).split('example.co.il').join('<mark>'+esc(v)+'</mark>');
+  });
+  try{localStorage.setItem('aeo-url',inp.value)}catch(e){}
+}
+try{inp.value=localStorage.getItem('aeo-url')||''}catch(e){}
+inp.addEventListener('input',render);render();
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  const t=b.closest('.term').querySelector('pre').dataset.text;
+  try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}
+  b.textContent='הועתק';b.classList.add('done');setTimeout(()=>{b.textContent='העתקה';b.classList.remove('done')},1600);
+}));
+</script>
+</body>
+</html>
