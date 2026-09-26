@@ -74,7 +74,18 @@ If no URL provided, ask:
 
 ### Step 2: Check the Site
 
-Use Playwright or web fetch to scan the site. Check these parameters:
+Use Playwright or web fetch to scan the site.
+
+**Core 7 checks (run these first, in order, and report each result with the measured value):**
+1. **What a non-JS crawler sees.** Fetch the raw HTML without executing JavaScript (`curl -sL`), strip tags, scripts and styles, and report the number of visible text characters and the first 200. Under ~500 characters on the homepage = CRITICAL: the site is client-rendered and most AI crawlers (GPTBot, PerplexityBot, ClaudeBot) see an empty shell. Everything else waits until this is fixed (SSR, prerendering or static export).
+2. **Identity per page.** For every page in the sitemap: exactly one `<title>`, one `meta description`, one `H1`. Report missing ones and duplicates across pages.
+3. **Declaration to engines.** `robots.txt` and `sitemap.xml` return 200, the sitemap is declared inside robots.txt, and which AI crawlers are allowed or blocked (GPTBot, OAI-SearchBot, ChatGPT-User, PerplexityBot, ClaudeBot, Google-Extended).
+4. **Structured data.** Is there a JSON-LD block, which @type, and which properties schema.org expects for this business type are missing (LocalBusiness / ProfessionalService / Organization, FAQPage, Person).
+5. **Orphan pages.** Extract internal links from the homepage, compare with the sitemap URLs, and list pages that no page links to.
+6. **Weight and speed.** Time to load the homepage, total transfer size, and the single heaviest file.
+7. **What to fix first.** From checks 1-6, three fixes ordered by impact, each with the exact code change.
+
+Then check these parameters:
 
 **Technical AEO Checklist:**
 - [ ] SSL (HTTPS) — secure site
